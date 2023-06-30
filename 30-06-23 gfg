@@ -1,0 +1,45 @@
+//User function template for C++
+class Solution{
+public:	
+		
+	int isDivisible(string s){
+	    //complete the function here
+	   // long long i,N,decimal_number=0,p=0;
+    // N=s.size(); // storing the size of string in N
+    // for(i=N-1;i>=0;i--) // starting the loop from LSB
+    // {
+    //     if(s[i]=='1') // Checking if string element is 1
+    //     {
+    //         decimal_number+=pow(2,p); // if yes, adding the pth power of 2 to the decimal_number
+    //     }
+    //     p++; // incrementing the value of p as we move towards MSB
+    // }
+    // if(decimal_number%3==0)
+    // {
+    //     return 1;
+    // }
+    // return 0;
+    //  long long n=s.length();
+    // long long sum=0;
+    // for(long long i=n-1,j=0;i>=0,j<n;i--,j++)
+    // {
+    //     sum=sum+pow(2,j)*(s[i]-'0');
+    // }
+    // if(sum%3==0)
+    // return 1;
+    // else
+    // return 0;
+    int ans = 0;
+        int l = 0;
+        int n = s.size();
+        for(int i = n-1; i>=0; i--){
+            if(s[i]=='1'){
+                if(l%2)ans += 2;
+                else ans += 1;
+            }
+            l++; 
+        }
+        return ans%3==0;
+	}
+
+};
