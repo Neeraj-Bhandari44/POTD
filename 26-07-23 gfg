@@ -1,0 +1,19 @@
+void solve1(Node*root,Node*parent,unordered_map<int,Node*>&m){
+    if(root==NULL)return;
+    m[root->data] = parent;
+    solve1(root->left,root,m);
+    solve1(root->right,root,m);
+}
+int kthAncestor(Node *root, int k, int node)
+{
+    // Code here
+    unordered_map<int,Node*>m;
+    solve1(root,NULL,m);
+        Node *ans;
+    while(k--){
+        ans = m[node];
+        if(ans==NULL)return -1;
+        node = ans->data;
+    }
+    return node;
+}
