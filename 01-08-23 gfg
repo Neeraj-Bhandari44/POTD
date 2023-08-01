@@ -1,0 +1,34 @@
+ void dfs(vector<int>adj[],int v,vector<int >&visited,vector<int>&res,int start)
+    {
+       
+        res.push_back(start);
+         visited[start]=1;
+      // cout<<start<<" ";
+        for(auto x:adj[start])
+        {
+            if(visited[x]==0)
+            {
+               // visited[x]=1;
+                dfs(adj,v,visited,res,x);
+            }
+        }
+    //   res.push_back(start);
+    //   //cout<<s<<" ";
+    //   visited[start]=true;
+    //   for(int x:adj[start]){
+    //   if(visited[x]==false){
+    //         dfs(adj,v,visited,res,x);
+    //   }
+    //  }
+    }
+    vector<int> dfsOfGraph(int V, vector<int> adj[]) {
+       vector<int>visited(V,0);
+       vector<int >res;
+       for(int i=0;i<V;i++)
+       {
+           if(visited[i]==0)
+           dfs(adj,V,visited,res,i);
+       }
+       
+       return res;
+    }
