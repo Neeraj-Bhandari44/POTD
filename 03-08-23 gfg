@@ -1,0 +1,39 @@
+// User function Template for C++
+class Solution {
+  public:
+     
+         vector<int> shortestPath(int N,int M, vector<vector<int>>& edges){
+        vector<int>ans(N,-1);
+        vector<int>vis(N,0);
+        queue<int>q;
+        queue<int>q1;
+        ans[0]=0;
+        vector<vector<int>>graph[N];
+        for(auto vec:edges){
+            graph[vec[0]].push_back({vec[1],vec[2]});
+        }
+        q.push(0);
+        vis[0]=1;
+        while(!q.empty()){
+            int t = q.front();
+            q.pop();
+            for(auto child:graph[t]){
+                if(vis[child[0]]==0){
+                    ans[child[0]]=ans[t]+child[1];
+                    q.push(child[0]);
+                    vis[child[0]]=1;
+                }
+                else{
+                    ans[child[0]]=min(ans[t]+child[1],ans[child[0]]);
+                }
+            }
+        }
+        for(int i=0;i<N;i++){
+            for(auto vec:graph[i]){
+                if(ans[i]!=-1){
+                ans[vec[0]]=min(ans[vec[0]],ans[i]+vec[1]);}
+            }
+        }
+        return ans;
+    }
+};
