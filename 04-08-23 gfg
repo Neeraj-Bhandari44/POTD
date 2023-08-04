@@ -1,0 +1,20 @@
+class Solution{
+public:
+void help(stack<int> &s,int temp){
+   if(s.size()==0){ s.push(temp);return ;}
+        int temp1=s.top();
+        s.pop();
+ 
+       help(s,temp);
+        s.push(temp1);
+}
+    void Reverse(stack<int> &s){
+        if(s.size()==0) return ;
+        int temp=s.top();
+        s.pop();
+        Reverse(s);
+        help(s,temp);
+        
+        
+    }
+};
