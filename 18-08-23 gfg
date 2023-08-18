@@ -1,0 +1,24 @@
+    
+
+class Solution{
+    //Function to find the leaders in the array.
+    public:
+    vector<int> leaders(int a[], int n){
+        // Code here
+        int i=n-1,max=0;
+        vector<int>l;
+        while(i>=0)
+        {
+            if(a[i]>=max)
+            {
+                max=a[i];
+                l.push_back(a[i]);
+                i--;
+            }
+            else
+            i--;
+        }
+        reverse(l.begin(),l.end());
+        return l;
+    }
+};
