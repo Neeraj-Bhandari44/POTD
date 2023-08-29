@@ -1,0 +1,50 @@
+/*
+
+The structure of linked list is the following
+
+struct Node
+{
+    int data;
+    Node* next;
+    
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+};
+*/
+class Solution
+{
+    public:
+    Node *compute(Node *head)
+    {
+        Node* temp=head;
+        while(temp->next!=NULL)
+        {
+            if(temp->data<temp->next->data)
+            {
+                temp->data=temp->next->data;
+                temp->next=temp->next->next;
+                Node* temp1=head;
+                {
+                    while(!(temp1->next==temp->next))
+                    {
+                        if(temp1->data<temp->data)
+                        {
+                            temp1->data=temp->data;
+                            temp1->next=temp->next;
+                        }
+                        else
+                        temp1=temp1->next;
+                    }
+                }
+            }
+            else 
+             temp=temp->next;
+        }
+        return head;
+
+    }
+    
+};
+   
