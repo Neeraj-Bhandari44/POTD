@@ -1,0 +1,42 @@
+
+
+/* Link list Node 
+struct Node
+{
+    int data;
+    struct Node* next;
+    
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+};
+*/
+
+/*You are required to complete below method*/
+Node* deleteNode(Node *head,int x)
+{
+    if (head == nullptr) {
+        return nullptr;
+    }
+    
+    if(x == 1) {
+        Node *nodeToDelete = head;
+        head = head->next;
+        delete nodeToDelete;
+        return head;
+    }
+
+    Node *prevNode = head;
+    for(int i = 1; i < x - 1 && prevNode != nullptr; i++) {
+        prevNode = prevNode->next;
+    }
+    
+    if(prevNode && prevNode->next) {
+        Node *nodeToDelete = prevNode->next;
+        prevNode->next = prevNode->next->next;
+        delete nodeToDelete;
+    }
+
+    return head;
+}
