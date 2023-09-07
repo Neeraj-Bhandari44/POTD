@@ -1,0 +1,29 @@
+// User function Template for C++
+
+class Solution {
+  public:
+     int MOD=100000;
+    int minimumMultiplications(vector<int>& arr, int start, int end) {
+        // code here
+        if(start==end) return 0;
+        queue<int> q;
+        q.push(start);
+        
+        vector<int> mind(MOD, INT_MAX);
+        mind[start]=0;
+        while(!q.empty()){
+            int s=q.front();
+            q.pop();
+            for(int i=0; i<arr.size();++i){
+                int x=(arr[i]*s)%MOD;
+                if(mind[x]>mind[s]+1){
+                    mind[x]=mind[s]+1;
+                    q.push(x);
+                    if(x==end) return mind[x];
+                }
+                
+            }
+        }
+        return -1;
+    }
+};
