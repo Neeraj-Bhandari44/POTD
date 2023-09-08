@@ -1,0 +1,51 @@
+//User function template for C++
+
+/* The Node structure is
+struct Node
+{
+    int data;
+    struct Node *left;
+    struct Node *right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+}; 
+*/
+
+class Solution{
+  public:
+    void inorderTraversal(int &i, Node *root, vector<int> &inorder, bool isConstructing) {
+        // Base Case
+        if(root == NULL) return;
+        
+        // Left Call
+        inorderTraversal(i, root -> left, inorder, isConstructing);
+        
+        // Handling:
+        // IF : Constructing Phase
+        // ELSE : Traversal Phase
+        if(isConstructing)
+            root -> data = inorder[i++];
+        else 
+            inorder.push_back(root -> data);
+        
+        // Right Call
+        inorderTraversal(i, root -> right, inorder, isConstructing);
+    }
+    
+    Node *binaryTreeToBST (Node *root) {
+        vector<int> inorder;
+        int index = 0;
+        // Traversing Call
+        inorderTraversal(index, root, inorder, 0);
+        
+        // Sorting to make array suitable for BST Inorder Traversal
+        sort(inorder.begin(), inorder.end());
+        
+        // Constructing Call
+        inorderTraversal(index, root, inorder, 1);
+        return root;
+    }
+};
