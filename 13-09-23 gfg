@@ -1,0 +1,21 @@
+// User function Template for C++
+
+class Solution{
+public:
+    string findLargest(int N, int S){
+         if (S > 9*N || (S == 0 && N > 1)) {
+        return "-1";
+    }
+    string result = "";
+    for(int i = 0; i < N; i++) {
+        if(S >= 10) {
+            result += '9';
+            S -= 9;
+        } else {
+            result += to_string(S);
+            S = 0;
+        }
+    }
+    return result;
+    }
+};
