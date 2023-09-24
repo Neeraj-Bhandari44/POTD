@@ -1,0 +1,19 @@
+class Solution{
+  public:
+    vector<int> duplicates(int arr[], int n) {
+        // code here
+        vector<int>v;
+        int f=0;
+        sort(arr,arr+n);
+        for(int i=0;i<n;i++)
+        {
+            if(arr[i]==arr[i+1]&&arr[i+1]!=arr[i+2]){
+            v.push_back(arr[i]);
+                f++;
+            }
+        }
+        if(f==0)
+        v.push_back(-1);
+        return v;
+    }
+};
