@@ -1,0 +1,63 @@
+
+class Solution
+{   
+    public:
+    //Function to return list of integers that form the boundary 
+    //traversal of the matrix in a clockwise manner.
+    vector<int> boundaryTraversal(vector<vector<int> > matrix, int n, int m) 
+    {
+        int row_start=0;
+        int col_start=0;
+       
+        int row_end=n-1;
+        int col_end=m-1;
+        
+         vector<int> ans;
+
+        if(n==1){
+            for(int i=0;i<m;i++){
+                ans.push_back(matrix[n-1][i]);
+            }
+            return ans;
+        }
+        
+        
+        if(m==1){
+            for(int i=0;i<n;i++){
+                ans.push_back(matrix[i][m-1]);
+            }
+            return ans;
+        }
+            
+            for(int i=col_start;i<=col_end;i++)
+                {
+                    ans.push_back(matrix[row_start][i]);
+                }
+            row_start++;
+            
+            // traversal of last col;
+            for(int i=row_start;i<=row_end;i++)
+                {
+                    ans.push_back(matrix[i][col_end]);
+                    
+                }
+            col_end--;
+            
+            // traversal of the last row;
+            for(int i=col_end;i>=col_start;i--)
+                {
+                    ans.push_back(matrix[row_end][i]);
+                    
+                }
+            row_end--;
+            
+            // traversal of the first col;
+            for(int i=row_end;i>=row_start;i--)
+                {
+                    ans.push_back(matrix[i][col_start]);
+                    
+                }
+          
+            return ans;
+    }
+};
